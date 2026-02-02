@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}GreatKart | One of the Biggest Online Shopping Platform{% endblock %}
+
+{% block content %}
+
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+<div class="intro-banner-wrap">
+	<img src="{% static "images/banners/cover.png" %}" class="img-fluid rounded shadow" style="height: 400px; width: 100%; object-fit: cover;">
+</div>
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y">
+<div class="container">
+
+<header class="section-heading mb-4">
+	<div class="row align-items-center">
+		<div class="col">
+			<h3 class="section-title font-weight-bold text-dark mb-0">Popular products</h3>
+		</div>
+		<div class="col-auto">
+			<a href="{% url "store" %}" class="btn btn-primary px-4">See all</a>
+		</div>
+	</div>
+</header><!-- sect-heading -->
+
+	
+<div class="row">
+	{% for product in products %}
+	<div class="col-md-3 mb-4">
+		<div class="card card-product-grid border-0 shadow-sm h-100 product-card">
+			<a href="{{product.get_url}}" class="img-wrap overflow-hidden d-block"> 
+				<img src="{{product.images.url}}" class="img-fluid product-image"> 
+			</a>
+			<figcaption class="info-wrap p-3">
+				<a href="{{product.get_url}}" class="title text-dark font-weight-bold d-block mb-2 text-truncate product-title">
+					{{product.product_name}}
+				</a>
+				<div class="price mt-2">
+					<span class="h5 text-primary font-weight-bold mb-0">${{product.price}}</span>
+				</div>
+				<div class="mt-3">
+					<a href="#" class="btn btn-primary btn-block btn-sm cart-btn">
+						<i class="fa fa-shopping-cart mr-1"></i> Add to Cart
+					</a>
+				</div>
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+	{% endfor %}
+</div> <!-- row.// -->
+
+</div><!-- container // -->
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+<style>
+/* Hover effects only for products section */
+.product-card {
+	transition: all 0.3s ease;
+}
+
+.product-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15) !important;
+}
+
+.product-image {
+	transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+	transform: scale(1.05);
+}
+
+.product-title {
+	transition: color 0.2s ease;
+}
+
+.product-card:hover .product-title {
+	color: #007bff !important;
+}
+
+/* Only cart button hover - NOT all .btn */
+.cart-btn {
+	transition: all 0.2s ease;
+}
+
+.cart-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+}
+
+.intro-banner-wrap img {
+	transition: transform 0.3s ease;
+}
+
+.intro-banner-wrap:hover img {
+	transform: scale(1.02);
+}
+</style>
+
+{% endblock %}
