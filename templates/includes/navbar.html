@@ -91,14 +91,16 @@
 
                 <!-- MOBILE: SEARCH BAR (Smaller) -->
                 <div class="col-12 d-lg-none mb-2">
-                    <div class="input-group input-group-sm">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">
-                                <i class="fa fa-search"></i>
-                            </button>
+                    <form action="{% url 'search' %}" method="GET">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Search..." name="keyword">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- MOBILE: SIGN IN | REGISTER -->
@@ -137,14 +139,16 @@
 
                         <!-- SEARCH BAR -->
                         <div class="col">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search products...">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
+                            <form action="{% url 'search' %}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search products..." name="keyword">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <!-- SIGN IN | REGISTER -->
@@ -159,13 +163,13 @@
 
                         <!-- CART ICON -->
                         <div class="col-auto">
-                            <a href="./cart.html" class="position-relative d-inline-block">
+                            <a href="{% url "cart" %}" class="position-relative d-inline-block">
                                 <div class="rounded-circle bg-light border border-primary d-flex align-items-center justify-content-center"
                                      style="width:42px; height:42px;">
                                     <i class="fa fa-shopping-cart text-primary"></i>
                                 </div>
                                 <span class="badge badge-danger badge-pill position-absolute"
-                                      style="top:-4px; right:-6px;">0</span>
+                                      style="top:-4px; right:-6px;">{{cart_count}}</span>
                             </a>
                         </div>
 
