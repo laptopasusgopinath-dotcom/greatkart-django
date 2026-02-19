@@ -105,9 +105,16 @@
 
                 <!-- MOBILE: SIGN IN | REGISTER -->
                 <div class="col-12 d-lg-none text-center py-2">
-                    <a href="./signin.html" class="text-primary font-weight-bold">Sign in</a>
+                    {% if user.is_authenticated %}
+                    <small class="text-muted d-block">Welcome {{user.first_name}}</small>
+                    <a href="{% url 'dashboard' %}" class="text-primary font-weight-bold">Dashboard</a>
+                    <span class="text-muted">|</span>
+                    <a href="{% url 'logout' %}" class="text-primary font-weight-bold">Logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="text-primary font-weight-bold">Sign in</a>
                     <span class="text-muted mx-2">|</span>
-                    <a href="./register.html" class="text-primary font-weight-bold">Register</a>
+                    <a href="{% url 'register' %}" class="text-primary font-weight-bold">Register</a>
+                    {% endif %}
                 </div>
 
                 <!-- DESKTOP: ALL CONTROLS IN ONE ROW -->
@@ -153,12 +160,18 @@
 
                         <!-- SIGN IN | REGISTER -->
                         <div class="col-auto">
-                            <div class="text-nowrap">
-                                <small class="text-muted d-block">Welcome guest!</small>
-                                <a href="./signin.html" class="text-primary font-weight-bold">Sign in</a>
+                            {% if user.is_authenticated %}
+                            <small class="text-muted d-block">Welcome {{user.first_name}}</small>
+                            <a href="{% url 'dashboard' %}" class="text-primary font-weight-bold">Dashboard</a>
+                            <span class="text-muted">|</span>
+                            <a href="{% url 'logout' %}" class="text-primary font-weight-bold">Logout</a>
+                            {% else %}
+                                <div class="text-nowrap">
+                                <a href="{% url 'login' %}" class="text-primary font-weight-bold">Sign in</a>
                                 <span class="text-muted">|</span>
-                                <a href="./register.html" class="text-primary font-weight-bold">Register</a>
+                                <a href="{% url 'register' %}" class="text-primary font-weight-bold">Register</a>
                             </div>
+                            {% endif %}
                         </div>
 
                         <!-- CART ICON -->
